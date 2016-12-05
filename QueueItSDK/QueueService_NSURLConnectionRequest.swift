@@ -34,7 +34,7 @@ class QueueService_NSURLConnectionRequest : NSObject, NSURLConnectionDelegate, N
         case notADictionary, missingErrors
     }
     
-    open func connectionDidFinishLoading(_ conn:NSURLConnection)
+    func connectionDidFinishLoading(_ conn:NSURLConnection)
     {
         if hasExpectedStatusCode() {
             let data = self.data!
@@ -55,7 +55,7 @@ class QueueService_NSURLConnectionRequest : NSObject, NSURLConnectionDelegate, N
         }
     }
     
-    open func connection(_ conn:NSURLConnection, didReceive response:URLResponse)
+    func connection(_ conn:NSURLConnection, didReceive response:URLResponse)
     {
         self.response = response
         let httpResponse = response as! HTTPURLResponse
@@ -63,12 +63,12 @@ class QueueService_NSURLConnectionRequest : NSObject, NSURLConnectionDelegate, N
         self.actualStatusCode = statusCode
     }
     
-    open func connection(_ conn:NSURLConnection, didReceive data:Data)
+    func connection(_ conn:NSURLConnection, didReceive data:Data)
     {
         appendData(data)
     }
     
-    open func connection(_ conn:NSURLConnection, didFailWithError error:Error)
+    func connection(_ conn:NSURLConnection, didFailWithError error:Error)
     {
         self.failureCallback(ErrorInfo(nil, error.localizedDescription), 400)
     }

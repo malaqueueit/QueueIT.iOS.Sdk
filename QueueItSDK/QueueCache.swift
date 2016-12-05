@@ -16,80 +16,80 @@ class QueueCache {
         KEY_CACHE = "\(customerId)-\(eventId)"
     }
     
-    open func getWidgets() -> [String:String]? {
+    func getWidgets() -> [String:String]? {
         let cache: [String : Any] = ensureCache()
         let widgets: [String:String]? = (cache[KEY_WIDGETS] as? [String:String]?)!
         return widgets
     }
     
-    open func widgetExist(_ name: String) -> Bool {
+    func widgetExist(_ name: String) -> Bool {
         let widgets = getWidgets()
         return widgets?[name] != nil
     }
     
-    open func getQueueId() -> String? {
+    func getQueueId() -> String? {
         let cache: [String : Any] = ensureCache()
         let queueId: String? = cache[KEY_QUEUE_ID] as? String
         return queueId
     }
     
-    open func hasQueueId() -> Bool {
+    func hasQueueId() -> Bool {
         let cache: [String : Any] = ensureCache()
         let queueId: String? = cache[KEY_QUEUE_ID] as? String
         return queueId != nil
     }
     
-    open func getQueueIdTtl() -> Int64? {
+    func getQueueIdTtl() -> Int64? {
         let cache: [String : Any] = ensureCache()
         let queueIdTtl: Int64? = cache[KEY_QUEUEID_TTL] as? Int64
         return queueIdTtl
     }
     
-    open func getExtendSession() -> Bool? {
+    func getExtendSession() -> Bool? {
         let cache: [String : Any] = ensureCache()
         let extendSession: Bool? = cache[KEY_EXTEND_SESSION] as? Bool
         return extendSession
     }
     
-    open func getRedirectId() -> String? {
+    func getRedirectId() -> String? {
         let cache: [String : Any] = ensureCache()
         let redirectId: String? = cache[KEY_REDIRECT_ID] as? String
         return redirectId
     }
     
-    open func getSessionTtl() -> Int64? {
+    func getSessionTtl() -> Int64? {
         let cache: [String : Any] = ensureCache()
         let sessionTtl: Int64? = cache[KEY_SESSION_TTL] as? Int64
         return sessionTtl
     }
     
-    open func getSessionTtlDelta() -> Int? {
+    func getSessionTtlDelta() -> Int? {
         let cache: [String : Any] = ensureCache()
         let sessionTtlDelta: Int? = cache[KEY_SESSION_TTL_DELTA] as? Int
         return sessionTtlDelta
     }
     
-    open func setQueueId(_ queueId: String) {
+    func setQueueId(_ queueId: String) {
         update(key: KEY_QUEUE_ID, value: queueId)
     }
     
-    open func setExtendSession(_ extendSession: Bool) {
+    func setExtendSession(_ extendSession: Bool) {
         update(key: KEY_EXTEND_SESSION, value: extendSession)
     }
     
-    open func setRedirectId(_ redirectId: String) {
+    func setRedirectId(_ redirectId: String) {
         update(key: KEY_REDIRECT_ID, value: redirectId)
     }
     
-    open func setQueueIdTtl(_ queueIdTtl: Int64) {
+    func setQueueIdTtl(_ queueIdTtl: Int64) {
         update(key: KEY_QUEUEID_TTL, value: queueIdTtl)
     }
     
-    open func setSessionTtl(_ sessionTtl: Int64) {
+    func setSessionTtl(_ sessionTtl: Int64) {
         update(key: KEY_SESSION_TTL, value: sessionTtl)
     }
     
-    open func addOrUpdateWidget(_ widget: WidgetDTO) {
+    func addOrUpdateWidget(_ widget: WidgetDTO) {
         var widgets = getWidgets()
         if widgets == nil {
             widgets = [String:String]()
@@ -98,11 +98,11 @@ class QueueCache {
         update(key: KEY_WIDGETS, value: widgets!)
     }
     
-    open func setSessionTtlDelta(_ sessionTtlDelta: Int) {
+    func setSessionTtlDelta(_ sessionTtlDelta: Int) {
         update(key: KEY_SESSION_TTL_DELTA, value: sessionTtlDelta)
     }
     
-    open func clear() {
+    func clear() {
         var cache: [String : Any] = ensureCache()
         cache.removeAll()
         setCache(cache)

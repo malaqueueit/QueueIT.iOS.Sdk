@@ -8,12 +8,12 @@ class QueueITEngine {
     let MAX_RETRY_SEC = 10
     let INITIAL_WAIT_RETRY_SEC = 1
     
-    open var customerId: String
-    open var eventId: String
-    open var configId: String
-    open var layoutName: String
-    open var language: String
-    open var widgets = [WidgetRequest]()
+    var customerId: String
+    var eventId: String
+    var configId: String
+    var layoutName: String
+    var language: String
+    var widgets = [WidgetRequest]()
     var deltaSec: Int
     
     var onQueueItemAssigned: (QueueItemDetails) -> Void
