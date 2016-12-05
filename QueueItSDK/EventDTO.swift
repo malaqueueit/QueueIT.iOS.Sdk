@@ -4,14 +4,14 @@ enum EventStateError : Error {
     case invalidEventState
 }
 
-enum EventState {
+public enum EventState {
     case idle, prequeue, queue, postqueue
 }
 
-class EventDTO {
+public class EventDTO {
     var state: EventState
     
-    init(_ state: EventState) {
+    public init(_ state: EventState) {
         self.state = state
     }
 }
