@@ -1,6 +1,6 @@
 import Foundation
 
-open class WidgetRequest {
+public class WidgetRequest {
     var name: String
     var version: Int
     
