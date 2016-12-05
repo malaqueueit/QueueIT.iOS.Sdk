@@ -1,6 +1,6 @@
 import Foundation
 
-open class EnqueueDTO {
+class EnqueueDTO {
     var queueIdDto: QueueIdDTO?
     var eventDetails: EventDTO
     var redirectDto: RedirectDTO?

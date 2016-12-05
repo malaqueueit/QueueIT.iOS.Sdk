@@ -4,7 +4,7 @@ enum QueueItServerFailure : Error {
     case serviceUnavailable, invalidHostName(String), invalidEventId(String), invalidWidgetName(String)
 }
 
-open class QueueITEngine {
+class QueueITEngine {
     let MAX_RETRY_SEC = 10
     let INITIAL_WAIT_RETRY_SEC = 1
     

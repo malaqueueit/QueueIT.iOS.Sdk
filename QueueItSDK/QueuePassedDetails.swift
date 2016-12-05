@@ -8,7 +8,7 @@ enum PassedType {
     case safetyNet, queue, disabled, directLink, afterEvent
 }
 
-class QueuePassedDetails {
+public class QueuePassedDetails {
     var passedType: PassedType?
     
     init(_ passedType: PassedType?) {

@@ -8,7 +8,7 @@ enum EventState {
     case idle, prequeue, queue, postqueue
 }
 
-open class EventDTO {
+class EventDTO {
     var state: EventState
     
     init(_ state: EventState) {

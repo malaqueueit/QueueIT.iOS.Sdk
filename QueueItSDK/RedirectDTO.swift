@@ -1,6 +1,6 @@
 import Foundation
 
-open class RedirectDTO {
+class RedirectDTO {
     var passedType: PassedType
     var ttl: Int
     var extendTtl: Bool

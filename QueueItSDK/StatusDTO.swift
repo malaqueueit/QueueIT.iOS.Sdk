@@ -1,6 +1,6 @@
 import Foundation
 
-open class StatusDTO {
+class StatusDTO {
     var eventDetails: EventDTO?
     var redirectDto: RedirectDTO?
     var widgets: [WidgetDTO]?

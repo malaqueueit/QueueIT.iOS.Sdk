@@ -1,6 +1,6 @@
 import Foundation
 
-open class QueueCache {
+class QueueCache {
     fileprivate var KEY_CACHE = ""
     fileprivate let KEY_QUEUE_ID = "queueId"
     fileprivate let KEY_QUEUEID_TTL = "queueIdTtl"

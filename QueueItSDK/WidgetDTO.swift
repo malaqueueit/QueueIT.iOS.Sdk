@@ -1,6 +1,6 @@
 import Foundation
 
-open class WidgetDTO {
+class WidgetDTO {
     var name: String
     var checksum: String
     var data: [String:String]

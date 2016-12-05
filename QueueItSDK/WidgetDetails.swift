@@ -1,6 +1,6 @@
 import Foundation
 
-open class WidgetDetails {
+public class WidgetDetails {
     var name: String
     var data: [String:String]
     

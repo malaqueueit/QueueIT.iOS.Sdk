@@ -1,6 +1,6 @@
 import Foundation
 
-class QueueItemDetails {
+public class QueueItemDetails {
     var queueId: String
     var eventDetails: EventDTO
     

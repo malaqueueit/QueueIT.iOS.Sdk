@@ -4,7 +4,7 @@ enum UrlRequestFailure : Error {
     case invalidUrl(String)
 }
 
-open class QueueService_NSURLConnectionRequest : NSObject, NSURLConnectionDelegate, NSURLConnectionDataDelegate
+class QueueService_NSURLConnectionRequest : NSObject, NSURLConnectionDelegate, NSURLConnectionDataDelegate
 {
     var request: URLRequest
     var response: URLResponse?

@@ -1,6 +1,6 @@
 import Foundation
 
-open class QueueIdDTO {
+class QueueIdDTO {
     var queueId: String
     var ttl: Int
     
