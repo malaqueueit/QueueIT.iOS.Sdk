@@ -4,8 +4,6 @@ Library for integrating Queue-IT sdk into an iOS app
 See below an example on how to use Queue-IT sdk:
 
 
-import UIKit
-import QueueItSDK
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
