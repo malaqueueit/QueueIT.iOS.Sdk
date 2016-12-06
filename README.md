@@ -5,11 +5,8 @@ See below an example on how to use Queue-IT sdk:
 
 
 
-@UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
-    var window: UIWindow?
     
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions:          [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         let customerId = "sasha"
         let eventId = "itl5"
         let configId = "configId1"
@@ -61,7 +58,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func onQueueItError(errorMessage: String) {
         print("ERROR: \(errorMessage)")
     }
-}
 
 
 
