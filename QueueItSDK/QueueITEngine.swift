@@ -1,10 +1,6 @@
 import Foundation
 
-enum QueueItServerFailure : Error {
-    case serviceUnavailable, invalidHostName(String), invalidEventId(String), invalidWidgetName(String)
-}
-
-class QueueITEngine {
+public class QueueITEngine {
     let MAX_RETRY_SEC = 10
     let INITIAL_WAIT_RETRY_SEC = 1
     
@@ -24,7 +20,7 @@ class QueueITEngine {
     var onQueueIdRejected: (String) -> Void
     var onQueueItError: (String) -> Void
     
-    init(customerId: String, eventId: String, configId: String, widgets:WidgetRequest ..., layoutName: String, language: String,
+    public init(customerId: String, eventId: String, configId: String, widgets:WidgetRequest ..., layoutName: String, language: String,
          onQueueItemAssigned: @escaping (_ queueItemDetails: QueueItemDetails) -> Void,
          onQueuePassed: @escaping (_ queuePassedDetails: QueuePassedDetails) -> Void,
          onPostQueue: @escaping () -> Void,
