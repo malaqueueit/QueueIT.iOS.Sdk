@@ -48,6 +48,7 @@ See below an example on how to use Queue-IT sdk:
     
     func onWidgetChanged(widget: WidgetDetails) {
         print("Widget changed!: \(widget.name)")
+        print("value: \(widget.data["progress"])")
     }
     
     func onQueueIdRejected(reason: String) {
