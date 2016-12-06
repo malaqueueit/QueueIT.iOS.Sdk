@@ -47,7 +47,7 @@ public class QueueITEngine {
         QueueCache.sharedInstatnce.initialize(customerId, eventId)
     }
     
-    func run() {
+    public func run() {
         if isInSession(tryExtendSession: true) {
             onQueuePassed(QueuePassedDetails(nil))//TODO: should not be nill, figure out what
         } else if isWithinQueueIdSession() {
