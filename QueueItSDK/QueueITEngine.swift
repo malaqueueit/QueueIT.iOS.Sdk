@@ -136,7 +136,6 @@ public class QueueITEngine {
             self.onPostQueue()
         }
         else {
-            print("requesting status...")
             let delaySec = statusDto.nextCallMSec / 1000
             self.executeWithDelay(delaySec, self.checkStatus)
         }
