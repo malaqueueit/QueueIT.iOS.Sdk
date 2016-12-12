@@ -49,7 +49,7 @@ public class QueueITEngine {
     
     public func run() {
         if isInSession(tryExtendSession: true) {
-            onQueuePassed(QueuePassedDetails(nil))//TODO: should not be nill, figure out what
+            onQueuePassed(QueuePassedDetails(nil))
         } else if isWithinQueueIdSession() {
             checkStatus()
         } else {
@@ -199,7 +199,6 @@ public class QueueITEngine {
         {
             self.onQueueItError(error.message)
         } else if errorStatusCode >= 500 {
-            print("retrying, delta: \(self.deltaSec)")
             self.retryMonitor(self.enqueue, error.message)
         }
     }
