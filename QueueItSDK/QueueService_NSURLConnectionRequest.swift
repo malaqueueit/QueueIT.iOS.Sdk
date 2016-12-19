@@ -51,6 +51,7 @@ class QueueService_NSURLConnectionRequest : NSObject, NSURLConnectionDelegate, N
                 self.failureCallback(ErrorInfo(id!, message!), self.actualStatusCode!)
             }
             catch {
+                self.failureCallback(ErrorInfo(nil, "Could not unwrap error data"), self.actualStatusCode!)
             }
         }
     }
