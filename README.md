@@ -1,7 +1,7 @@
 # QueueIT.iOS.Sdk
 Library for integrating Queue-IT sdk into an iOS app
 
-**See below an example on how to use Queue-IT sdk:**
+**Usage:**
 
 
 
