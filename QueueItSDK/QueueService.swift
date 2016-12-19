@@ -7,12 +7,12 @@ class QueueService {
     
     static let sharedInstance = QueueService()
     
-    let httpProtocl = "http://"
+    let httpProtocol = "http://"
     let hostName = "test.queue-it.net"
     var customerId = ""
     
     func getHostName() -> String {
-        return "\(httpProtocl)\(customerId).\(hostName)"
+        return "\(httpProtocol)\(customerId).\(hostName)"
     }
     
     func enqueue(_ customerId:String, _ eventId:String, _ configId:String, layoutName:String?, language:String?, success:@escaping (_ status: EnqueueDTO) -> Void, failure:@escaping QueueServiceFailure) {
@@ -179,7 +179,7 @@ class QueueService {
     }
     
     func extractWidgetDetails(_ dataDict: NSDictionary) -> [WidgetDTO]? {
-        var widgetsResutl = [WidgetDTO]()
+        var widgetsResult = [WidgetDTO]()
         let widgetArr = dataDict.value(forKey: "widgets") as? NSArray
         for w in widgetArr! {
             var widgetText = String(describing: w)
@@ -197,9 +197,9 @@ class QueueService {
             kvPairs.removeValue(forKey: "checksum")
             
             let widgetDto = WidgetDTO(name!, checksum!, kvPairs)
-            widgetsResutl.append(widgetDto)
+            widgetsResult.append(widgetDto)
         }
-        return widgetsResutl
+        return widgetsResult
     }
     
     func getAllKeyValues(_ text: String) -> [String:String] {
