@@ -10,7 +10,7 @@ class QueueCache {
     fileprivate let KEY_SESSION_TTL_DELTA = "sessionTtlDelta"
     fileprivate let KEY_WIDGETS = "widgets"
     
-    static let sharedInstatnce  = QueueCache()
+    static let sharedInstance  = QueueCache()
     
     func initialize(_ customerId: String, _ eventId: String) {
         KEY_CACHE = "\(customerId)-\(eventId)"
