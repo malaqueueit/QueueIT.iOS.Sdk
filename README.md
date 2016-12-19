@@ -12,15 +12,15 @@ from Queue-IT server. As a user of SDK one can subscribe to be notified when:
 ##Usage:
     
     func setupAndRunQueueIT {
-        let customerId = "sasha"
-        let eventId = "itl5"
-        let configId = "configId1"
-        let widget1 = WidgetRequest("CountDown", 1)
-        let widget2 = WidgetRequest("Progress", 1)
+        let customerId = "exampleCustomerId"
+        let eventId = "exampleEventId"
+        let configId = "exampleConfigId"
+        let countDownWidget = WidgetRequest("CountDown", 1)
+        let progressWidget = WidgetRequest("Progress", 1)
         let engine = QueueITEngine(customerId: customerId,
                                    eventId: eventId,
                                    configId: configId,
-                                   widgets: widget1, widget2,
+                                   widgets: countDownWidget, progressWidget,
                                    layoutName: "",
                                    language: "",
                                    onQueueItemAssigned: (onQueueItemAssigned),
@@ -38,16 +38,16 @@ from Queue-IT server. As a user of SDK one can subscribe to be notified when:
         print(queueItemDetails.queueId)
     }
     
-    func onQueuePassed(queuePassedDetails: QueuePassedDetails) {
-        print("REDIRECTED!!! RedirectType: \(queuePassedDetails.passedType)")
+    func onQueuePassed() {
+        print("You have been redirected!")
     }
     
     func onPostQueue() {
-        print("Postqueue published...")
+        print("Event has ended!")
     }
     
     func onIdleQueue() {
-        print("Idle queue published...")
+        print("Event has not started yet!")
     }
     
     func onWidgetChanged(widget: WidgetDetails) {
