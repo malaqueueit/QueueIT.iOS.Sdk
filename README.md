@@ -59,7 +59,8 @@ Library for integrating Queue-IT sdk into an iOS app
         print("ERROR: \(errorMessage)")
     }
     
-    ##Important:
+    
+##Important:
     The SDK logic does not execute in the background. Once the application view (which integrates with SDK) goes out of scope, you will need to invoke run() method on QueueITEngine instance every time the view needs to become active again.
 
 
