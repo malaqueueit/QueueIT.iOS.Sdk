@@ -89,25 +89,29 @@ public class QueueITEngine {
     
     func enqueue() {
         QueueService.sharedInstance.enqueue(self.customerId, self.eventId, self.configId, layoutName: nil, language: nil,
-                                            success: { (enqueueDto) -> Void in
-                                                let redirectInfo = enqueueDto.redirectDto
-                                                if redirectInfo != nil {
-                                                    self.handleQueuePassed(redirectInfo!)
-                                                } else {
-                                                    let eventState = enqueueDto.eventDetails.state
-                                                    if eventState == .queue || eventState == .prequeue {
-                                                        self.handleQueueIdAssigned(enqueueDto.queueIdDto!, enqueueDto.eventDetails)
-                                                        self.checkStatus()
-                                                    } else if eventState == .postqueue {
-                                                        self.onPostQueue()
-                                                    } else if eventState == .idle {
-                                                        self.onIdleQueue()
-                                                    }
-                                                }
-        },
-                                            failure: { (error, errorStatusCode) -> Void in
-                                                self.onEnqueueFailed(error!, errorStatusCode)
-        })
+            success: { (enqueueDto) -> Void in
+                self.onEnqueueSuccess(enqueueDto)
+            },
+            failure: { (error, errorStatusCode) -> Void in
+                self.onEnqueueFailed(error!, errorStatusCode)
+            })
+    }
+    
+    func onEnqueueSuccess(_ enqueueDto: EnqueueDTO) {
+        let redirectInfo = enqueueDto.redirectDto
+        if redirectInfo != nil {
+            self.handleQueuePassed(redirectInfo!)
+        } else {
+            let eventState = enqueueDto.eventDetails.state
+            if eventState == .queue || eventState == .prequeue {
+                self.handleQueueIdAssigned(enqueueDto.queueIdDto!, enqueueDto.eventDetails)
+                self.checkStatus()
+            } else if eventState == .postqueue {
+                self.onPostQueue()
+            } else if eventState == .idle {
+                self.onIdleQueue()
+            }
+        }
     }
     
     func handleQueueIdAssigned(_ queueIdInfo: QueueIdDTO, _ eventDetails: EventDTO) {
