@@ -54,19 +54,23 @@ class QueueService {
         body["widgets"] = widgetArr
         let statusUrl = "\(self.getHostName())/api/nativeapp/\(customerId)/\(eventId)/queue/\(queueId)/status"
         self.submitPUTPath(statusUrl, body: body as NSDictionary,
-                           success: { (data) -> Void in
-                            let dictData = self.dataToDict(data)
-                            let eventDetails = self.extractEventDetails(dictData!)
-                            let redirectDto = self.extractRedirectDetails(dictData!)
-                            let widgetsResult = self.extractWidgetDetails(dictData!)
-                            let rejectDto = self.extractRejectDetails(dictData!)
-                            let nextCallMSec = dictData!.value(forKey: "ttl") as? Int
-                            let statusDto = StatusDTO(eventDetails, redirectDto, widgetsResult, nextCallMSec!, rejectDto)
-                            onGetStatus(statusDto)
+            success: { (data) -> Void in
+                self.onGetStatusDataSuccess(data, onGetStatus)
         })
         { (error, errorStatusCode) -> Void in
             
         }
+    }
+    
+    func onGetStatusDataSuccess(_ data: Data, _ onGetStatus:@escaping (_ status: StatusDTO) -> Void) {
+        let dictData = self.dataToDict(data)
+        let eventDetails = self.extractEventDetails(dictData!)
+        let redirectDto = self.extractRedirectDetails(dictData!)
+        let widgetsResult = self.extractWidgetDetails(dictData!)
+        let rejectDto = self.extractRejectDetails(dictData!)
+        let nextCallMSec = dictData!.value(forKey: "ttl") as? Int
+        let statusDto = StatusDTO(eventDetails, redirectDto, widgetsResult, nextCallMSec!, rejectDto)
+        onGetStatus(statusDto)
     }
     
     func submitPOSTPath(_ path: String, bodyDict: NSDictionary, success: @escaping QueueServiceSuccess, failure: @escaping QueueServiceFailure)
