@@ -80,18 +80,14 @@ class QueueService {
     }
     
     func submitRequestWithURL(_ path: String, httpMethod: String, bodyDict: NSDictionary, expectedStatus: Int, success: @escaping QueueServiceSuccess, failure: @escaping QueueServiceFailure) {
-        do {
-            let url = URL(string: path)!
-            let jsonData: Data = try JSONSerialization.data(withJSONObject: bodyDict, options: .prettyPrinted)
-            let request = NSMutableURLRequest(url: url)
-            request.httpMethod = httpMethod
-            request.httpBody = jsonData
-            request.addValue("application/json", forHTTPHeaderField: "Accept")
-            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-            _ = QueueService_NSURLConnectionRequest(request: request as URLRequest, expectedStatusCode: expectedStatus, successCallback: success, failureCallback: failure)
-        } catch {
-            
-        }
+        let url = URL(string: path)!
+        let jsonData: Data = try! JSONSerialization.data(withJSONObject: bodyDict, options: .prettyPrinted)
+        let request = NSMutableURLRequest(url: url)
+        request.httpMethod = httpMethod
+        request.httpBody = jsonData
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        _ = QueueService_NSURLConnectionRequest(request: request as URLRequest, expectedStatusCode: expectedStatus, successCallback: success, failureCallback: failure)
     }
     
     func parseRedirectType(_ redirectType: String) throws -> PassedType {
