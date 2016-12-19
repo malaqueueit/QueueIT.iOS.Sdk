@@ -3,7 +3,7 @@ Library for integrating Queue-IT sdk into an iOS app
 
 ##Usage:
     
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions:        [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func setupAndRunQueueIT {
         let customerId = "sasha"
         let eventId = "itl5"
         let configId = "configId1"
@@ -24,8 +24,6 @@ Library for integrating Queue-IT sdk into an iOS app
                                    onQueueItError: (onQueueItError))
         
         engine.run()
-        
-        return true
     }
     
     func onQueueItemAssigned(queueItemDetails: QueueItemDetails) {
