@@ -1,5 +1,13 @@
 # QueueIT.iOS.Sdk
-Library for integrating Queue-IT sdk into an iOS app
+Library for integrating Queue-IT logic into an iOS app. SDK will publish corresponding events based on responses 
+from Queue-IT server. As a user of SDK one can subscribe to be notified when:
+ * user gets through the queue
+ * queueId has been assigned
+ * postQueue event is published
+ * widget's state has changed
+ * queueId has been rejected
+ * queue is in 'Idle' mode
+
 
 ##Usage:
     
