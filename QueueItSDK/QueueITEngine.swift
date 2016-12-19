@@ -123,10 +123,10 @@ public class QueueITEngine {
     
     func checkStatus() {
         let queueId = QueueCache.sharedInstatnce.getQueueId()!
-        QueueService.sharedInstance.getStatus(self.customerId, self.eventId, queueId, self.configId, self.widgets, onGetStatus: (onGetStatus))
+        QueueService.sharedInstance.getStatus(self.customerId, self.eventId, queueId, self.configId, self.widgets, onGetStatus: (onGetStatusSuccess), onFailed: (onGetStatusFailed))
     }
     
-    func onGetStatus(statusDto: StatusDTO) {
+    func onGetStatusSuccess(statusDto: StatusDTO) {
         if statusDto.widgets != nil {
             self.handleWidgets(statusDto.widgets!)
         }
@@ -143,6 +143,10 @@ public class QueueITEngine {
             let delaySec = statusDto.nextCallMSec / 1000
             self.executeWithDelay(delaySec, self.checkStatus)
         }
+    }
+    
+    func onGetStatusFailed(error: ErrorInfo?) {
+        
     }
     
     func handleWidgets(_ widgets: [WidgetDTO]) {
