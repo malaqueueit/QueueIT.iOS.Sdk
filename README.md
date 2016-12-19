@@ -3,7 +3,7 @@ Library for integrating Queue-IT sdk into an iOS app
 
 See below an example on how to use Queue-IT sdk:
 
-
+Usage
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions:        [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         let customerId = "sasha"
