@@ -13,7 +13,7 @@ public class QueueITEngine {
     var deltaSec: Int
     
     var onQueueItemAssigned: (QueueItemDetails) -> Void
-    var onQueuePassed: (QueuePassedDetails) -> Void
+    var onQueuePassed: () -> Void
     var onPostQueue: () -> Void
     var onIdleQueue: () -> Void
     var onWidgetChanged: (WidgetDetails) -> Void
@@ -22,7 +22,7 @@ public class QueueITEngine {
     
     public init(customerId: String, eventId: String, configId: String, widgets:WidgetRequest ..., layoutName: String, language: String,
          onQueueItemAssigned: @escaping (_ queueItemDetails: QueueItemDetails) -> Void,
-         onQueuePassed: @escaping (_ queuePassedDetails: QueuePassedDetails) -> Void,
+         onQueuePassed: @escaping () -> Void,
          onPostQueue: @escaping () -> Void,
          onIdleQueue: @escaping () -> Void,
          onWidgetChanged: @escaping(WidgetDetails) -> Void,
@@ -48,13 +48,33 @@ public class QueueITEngine {
     }
     
     public func run() {
-        if isInSession(tryExtendSession: true) {
-            onQueuePassed(QueuePassedDetails(nil))
-        } else if isWithinQueueIdSession() {
-            checkStatus()
-        } else {
-            enqueue()
+        if isConnected() {
+            if isInSession(tryExtendSession: true) {
+                onQueuePassed()
+            } else if isWithinQueueIdSession() {
+                checkStatus()
+            } else {
+                enqueue()
+            }
         }
+    }
+    
+    func isConnected() -> Bool {
+        var count = 0;
+        while (count < 5)
+        {
+            if (!iOSUtils.isInternetAvailable())
+            {
+                sleep(1)
+                count += 1
+            }
+            else
+            {
+                return true
+            }
+        }
+        self.onQueueItError("No internet connection!")
+        return false
     }
     
     func isWithinQueueIdSession() -> Bool {
@@ -179,7 +199,7 @@ public class QueueITEngine {
         cache.setSessionTtl(redirectInfo.ttl + currentTimeUnixUtil())
         cache.setExtendSession(redirectInfo.extendTtl)
         
-        self.onQueuePassed(QueuePassedDetails(redirectInfo.passedType))
+        self.onQueuePassed()
     }
     
     func currentTimeUnixUtil() -> Int64 {
