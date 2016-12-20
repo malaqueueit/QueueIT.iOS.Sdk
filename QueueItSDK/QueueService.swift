@@ -7,8 +7,8 @@ class QueueService {
     
     static let sharedInstance = QueueService()
     
-    let httpProtocol = "http://"
-    let hostName = "test.queue-it.net"
+    let httpProtocol = "https://"
+    let hostName = "queue-it.net"
     var customerId = ""
     
     func getHostName() -> String {
