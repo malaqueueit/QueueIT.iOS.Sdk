@@ -61,9 +61,9 @@ public class QueueITEngine {
     
     func ensureConnected() -> Bool {
         var count = 0;
-        while (count < 5)
+        while count < 5
         {
-            if (!iOSUtils.isInternetAvailable())
+            if !iOSUtils.isInternetAvailable()
             {
                 sleep(1)
                 count += 1
@@ -82,7 +82,7 @@ public class QueueITEngine {
         if cache.getQueueIdTtl() != nil {
             let currentTime = Date()
             let queueIdTtl = Date(timeIntervalSince1970: Double(cache.getQueueIdTtl()!))
-            if(currentTime < queueIdTtl) {
+            if currentTime < queueIdTtl {
                 return true
             }
         }
@@ -94,7 +94,7 @@ public class QueueITEngine {
         if cache.getRedirectId() != nil {
             let currentDate = Date()
             let sessionDate = Date(timeIntervalSince1970: Double(cache.getSessionTtl()!))
-            if(currentDate < sessionDate) {
+            if currentDate < sessionDate {
                 if tryExtendSession {
                     let isExtendSession = cache.getExtendSession()
                     if isExtendSession != nil {
@@ -220,7 +220,7 @@ public class QueueITEngine {
     }
     
     func retryMonitor(_ action: @escaping () -> Void, _ errorMessage: String) {
-        if (self.deltaSec < MAX_RETRY_SEC)
+        if self.deltaSec < MAX_RETRY_SEC
         {
             executeWithDelay(self.deltaSec, action)
             self.deltaSec = self.deltaSec * 2;
@@ -230,7 +230,7 @@ public class QueueITEngine {
     }
     
     func onEnqueueFailed(_ message: String, _ errorStatusCode: Int) {
-        if (errorStatusCode >= 400 && errorStatusCode < 500)
+        if errorStatusCode >= 400 && errorStatusCode < 500
         {
             self.onQueueItError(message)
         } else if errorStatusCode >= 500 {
