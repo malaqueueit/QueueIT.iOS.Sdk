@@ -8,6 +8,12 @@ class iOSUtils {
         return (UIDevice.current.identifierForVendor?.uuidString)!
     }
     
+    class func getSystemInfo() -> String {
+        let systemName = UIDevice.current.systemName
+        let systemVersion = UIDevice.current.systemVersion
+        return "\(systemName) \(systemVersion)"
+    }
+    
     class func isInternetAvailable() -> Bool
     {
         var zeroAddress = sockaddr_in()

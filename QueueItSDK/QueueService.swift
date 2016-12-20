@@ -18,7 +18,7 @@ class QueueService {
     func enqueue(_ customerId:String, _ eventId:String, _ configId:String, layoutName:String?, language:String?, success:@escaping (_ status: EnqueueDTO) -> Void, failure:@escaping QueueServiceFailure) {
         self.customerId = customerId
         let userId = iOSUtils.getUserId()
-        let userAgent = "myUserAgent"
+        let userAgent = iOSUtils.getSystemInfo()
         let sdkVersion = "v1.0"
         var body: [String : String] = ["userId" : userId, "userAgent" : userAgent, "sdkVersion" : sdkVersion, "configurationId" : configId]
         if layoutName != nil {
