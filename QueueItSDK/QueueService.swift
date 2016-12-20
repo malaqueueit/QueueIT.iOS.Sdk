@@ -1,7 +1,7 @@
 import Foundation
 
 typealias QueueServiceSuccess = (_ data: Data) -> Void
-typealias QueueServiceFailure = (_ error: ErrorInfo?, _ errorStatusCode: Int) -> Void
+typealias QueueServiceFailure = (_ errorMessage: String, _ errorStatusCode: Int) -> Void
 
 class QueueService {
     
@@ -36,12 +36,12 @@ class QueueService {
                                 let redirectDto = self.extractRedirectDetails(dictData!)
                                 success(EnqueueDTO(queueIdDto, eventDetails!, redirectDto))
         })
-        { (error, errorStatusCode) -> Void in
-            failure(error, errorStatusCode)
+        { (errorMessage, errorStatusCode) -> Void in
+            failure(errorMessage, errorStatusCode)
         }
     }
     
-    func getStatus(_ customerId:String, _ eventId:String, _ queueId:String, _ configId:String, _ widgets:[WidgetRequest], onGetStatus:@escaping (_ status: StatusDTO) -> Void, onFailed:@escaping(_ error: ErrorInfo) -> Void) {
+    func getStatus(_ customerId:String, _ eventId:String, _ queueId:String, _ configId:String, _ widgets:[WidgetRequest], onGetStatus:@escaping (_ status: StatusDTO) -> Void, onFailed:@escaping(_ errorMessage: String) -> Void) {
         self.customerId = customerId
         var body: [String : Any] = ["configurationId" : configId]
         var widgetArr = [Any]()
@@ -54,11 +54,11 @@ class QueueService {
         body["widgets"] = widgetArr
         let statusUrl = "\(self.getHostName())/api/nativeapp/\(customerId)/\(eventId)/queue/\(queueId)/status"
         self.submitPUTPath(statusUrl, body: body as NSDictionary,
-            success: { (data) -> Void in
-                self.onGetStatusDataSuccess(data, onGetStatus)
+                           success: { (data) -> Void in
+                            self.onGetStatusDataSuccess(data, onGetStatus)
         })
-        { (error, errorStatusCode) -> Void in
-            onFailed(error!)
+        { (message, errorStatusCode) -> Void in
+            onFailed(message)
         }
     }
     
@@ -85,13 +85,16 @@ class QueueService {
     
     func submitRequestWithURL(_ path: String, httpMethod: String, bodyDict: NSDictionary, expectedStatus: Int, success: @escaping QueueServiceSuccess, failure: @escaping QueueServiceFailure) {
         let url = URL(string: path)!
-        let jsonData: Data = try! JSONSerialization.data(withJSONObject: bodyDict, options: .prettyPrinted)
         let request = NSMutableURLRequest(url: url)
         request.httpMethod = httpMethod
-        request.httpBody = jsonData
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        _ = QueueService_NSURLConnectionRequest(request: request as URLRequest, expectedStatusCode: expectedStatus, successCallback: success, failureCallback: failure)
+        do {
+            request.httpBody = try JSONSerialization.data(withJSONObject: bodyDict, options: .prettyPrinted)
+            _ = QueueService_NSURLConnectionRequest(request: request as URLRequest, expectedStatusCode: expectedStatus, successCallback: success, failureCallback: failure)
+        } catch {
+            failure("Could not unwrap body for the request", -1)
+        }
     }
     
     func parseRedirectType(_ redirectType: String) throws -> PassedType {

@@ -46,12 +46,11 @@ class QueueService_NSURLConnectionRequest : NSObject, NSURLConnectionDelegate, N
                 let json = try JSONSerialization.jsonObject(with: rawErrorJson!, options: [])
                 guard let dict = json as? [String: Any] else { throw JSONParseError.notADictionary }
                 guard let errorsJson = dict["errors"] as? [[String: Any]] else { throw JSONParseError.missingErrors}
-                let id = errorsJson[0]["id"] as? String
-                let message = errorsJson[0]["message"] as? String
-                self.failureCallback(ErrorInfo(id!, message!), self.actualStatusCode!)
+                let errorMessage = errorsJson[0]["message"] as! String
+                self.failureCallback(errorMessage, self.actualStatusCode!)
             }
             catch {
-                self.failureCallback(ErrorInfo(nil, "Could not unwrap error data"), self.actualStatusCode!)
+                self.failureCallback("Could not unwrap error data", self.actualStatusCode!)
             }
         }
     }
@@ -71,7 +70,7 @@ class QueueService_NSURLConnectionRequest : NSObject, NSURLConnectionDelegate, N
     
     func connection(_ conn:NSURLConnection, didFailWithError error:Error)
     {
-        self.failureCallback(ErrorInfo(nil, error.localizedDescription), 400)
+        self.failureCallback(error.localizedDescription, 400)
     }
     
     func hasExpectedStatusCode() -> Bool {

@@ -10,7 +10,6 @@
 		1D71F3B51DF07C1700F85F60 /* QueueItSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D71F3B31DF07C1600F85F60 /* QueueItSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1D8811AA1DF16D6500901DAA /* iOSUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8811A91DF16D6500901DAA /* iOSUtils.swift */; };
 		1D8811AC1DF16DC500901DAA /* QueueCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8811AB1DF16DC500901DAA /* QueueCache.swift */; };
-		1D8811AF1DF16E1400901DAA /* ErrorInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8811AE1DF16E1400901DAA /* ErrorInfo.swift */; };
 		1D8811B11DF16E3C00901DAA /* EventDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8811B01DF16E3C00901DAA /* EventDTO.swift */; };
 		1D8811B31DF16E5A00901DAA /* WidgetDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8811B21DF16E5A00901DAA /* WidgetDTO.swift */; };
 		1D8811B51DF16E7500901DAA /* EnqueueDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8811B41DF16E7500901DAA /* EnqueueDTO.swift */; };
@@ -33,7 +32,6 @@
 		1D71F3B41DF07C1700F85F60 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1D8811A91DF16D6500901DAA /* iOSUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOSUtils.swift; sourceTree = "<group>"; };
 		1D8811AB1DF16DC500901DAA /* QueueCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueueCache.swift; sourceTree = "<group>"; };
-		1D8811AE1DF16E1400901DAA /* ErrorInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorInfo.swift; sourceTree = "<group>"; };
 		1D8811B01DF16E3C00901DAA /* EventDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDTO.swift; sourceTree = "<group>"; };
 		1D8811B21DF16E5A00901DAA /* WidgetDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WidgetDTO.swift; sourceTree = "<group>"; };
 		1D8811B41DF16E7500901DAA /* EnqueueDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnqueueDTO.swift; sourceTree = "<group>"; };
@@ -96,7 +94,6 @@
 		1D8811AD1DF16DF500901DAA /* DTO */ = {
 			isa = PBXGroup;
 			children = (
-				1D8811AE1DF16E1400901DAA /* ErrorInfo.swift */,
 				1D8811B01DF16E3C00901DAA /* EventDTO.swift */,
 				1D8811B21DF16E5A00901DAA /* WidgetDTO.swift */,
 				1D8811B41DF16E7500901DAA /* EnqueueDTO.swift */,
@@ -207,7 +204,6 @@
 				1D8811C21DF16F4700901DAA /* QueuePassedDetails.swift in Sources */,
 				1D8811AC1DF16DC500901DAA /* QueueCache.swift in Sources */,
 				1D8811B31DF16E5A00901DAA /* WidgetDTO.swift in Sources */,
-				1D8811AF1DF16E1400901DAA /* ErrorInfo.swift in Sources */,
 				1D8811C01DF16F2E00901DAA /* QueueItemDetails.swift in Sources */,
 				1D8811B11DF16E3C00901DAA /* EventDTO.swift in Sources */,
 				1D8811B51DF16E7500901DAA /* EnqueueDTO.swift in Sources */,
