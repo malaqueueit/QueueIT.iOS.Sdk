@@ -19,7 +19,7 @@ class QueueService {
         self.customerId = customerId
         let userId = iOSUtils.getUserId()
         let userAgent = iOSUtils.getSystemInfo()
-        let sdkVersion = "v1.0"
+        let sdkVersion = iOSUtils.getSDKVersion()
         var body: [String : String] = ["userId" : userId, "userAgent" : userAgent, "sdkVersion" : sdkVersion, "configurationId" : configId]
         if layoutName != nil {
             body["layoutName"] = layoutName

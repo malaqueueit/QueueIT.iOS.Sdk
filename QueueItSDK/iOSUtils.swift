@@ -14,6 +14,10 @@ class iOSUtils {
         return "\(systemName) \(systemVersion)"
     }
     
+    class func getSDKVersion() -> String {
+        return "iOS-2.1.5"
+    }
+    
     class func isInternetAvailable() -> Bool
     {
         var zeroAddress = sockaddr_in()
