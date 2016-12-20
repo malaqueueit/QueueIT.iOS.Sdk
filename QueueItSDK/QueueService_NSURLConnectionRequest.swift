@@ -49,6 +49,12 @@ class QueueService_NSURLConnectionRequest : NSObject, NSURLConnectionDelegate, N
                 let errorMessage = errorsJson[0]["message"] as! String
                 self.failureCallback(errorMessage, self.actualStatusCode!)
             }
+            catch JSONParseError.notADictionary {
+                self.failureCallback("Json data cannot be parsed into a dictionary", self.actualStatusCode!)
+            }
+            catch JSONParseError.missingErrors {
+                self.failureCallback("Errors data cannot be extracted from dictionary", self.actualStatusCode!)
+            }
             catch {
                 self.failureCallback("Could not unwrap error data", self.actualStatusCode!)
             }
