@@ -48,18 +48,18 @@ public class QueueITEngine {
     }
     
     public func run() {
-        if isConnected() {
-            if isInSession(tryExtendSession: true) {
-                onQueuePassed()
-            } else if isWithinQueueIdSession() {
+        if isInSession(tryExtendSession: true) {
+            onQueuePassed()
+        } else if isWithinQueueIdSession() {
+            if ensureConnected() {
                 checkStatus()
-            } else {
-                enqueue()
             }
+        } else if ensureConnected() {
+            enqueue()
         }
     }
     
-    func isConnected() -> Bool {
+    func ensureConnected() -> Bool {
         var count = 0;
         while (count < 5)
         {
@@ -168,7 +168,9 @@ public class QueueITEngine {
     }
     
     func onGetStatusFailed(errorMessage: String) {
-        self.retryMonitor(self.checkStatus, errorMessage)
+        if ensureConnected() {
+            self.retryMonitor(self.checkStatus, errorMessage)
+        }
     }
     
     func handleWidgets(_ widgets: [WidgetDTO]) {
