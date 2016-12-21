@@ -82,9 +82,10 @@ from Queue-IT server. As a user of SDK one can subscribe to be notified when:
 ##Widgets:
     Widgets are object definitions which can provide specific values that can be used by an application. 
     These values are frequently updated by QueueIT server and reflect the state of various queue-specific 
-    runtime components. The current version of SDK supports following widgets: "CountDown", "Progress".
-    *"CountDown": { "secondsToEventStart" : "10" } 
-    *"Progress": { "progress" : "0.2" } 
+    runtime components. The current version of SDK supports following widgets: "CountDown", "Progress". 
+    For example:
+      "CountDown": { "secondsToEventStart" : "10" } 
+      "Progress": { "progress" : "0.2" } 
     The key-value pairs (i.e. "progress" : "0.2") will be available on "data" property of WidgetDetails object.
 
 
