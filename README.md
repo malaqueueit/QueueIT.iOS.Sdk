@@ -11,9 +11,9 @@ from Queue-IT server. As a user of SDK one can subscribe to be notified when:
 
 ##Installation:
     SDK can be installed via following options:
-    *By including QueueITSDK project into the application project and adding it as an Embeded Binaries in the 
-    project's target properties.
-    *From cocoapods repository by including following pod into app's Podfile:
+    1. By including QueueITSDK project into the application project and adding it as an Embeded Binaries in the 
+      project's target properties.
+    2. From cocoapods repository by including following pod into app's Podfile: 
         pod 'QueueITSDK', '~> 1.0.7'
 
 
