@@ -15,8 +15,7 @@ class iOSUtils {
     }
     
     class func getSDKVersion() -> String {
-        //return "\(QueueItSDKVersionNumber)"
-        return "TODO:"
+        return "iOS-1.0.7"
     }
     
     class func isInternetAvailable() -> Bool
