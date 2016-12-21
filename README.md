@@ -9,6 +9,13 @@ from Queue-IT server. As a user of SDK one can subscribe to be notified when:
  * queue is in 'Idle' mode
 
 
+##Installation:
+    SDK can be installed via following options:
+    *By including QueueITSDK project into the application project and adding it as an Embeded Binaries in the project's target properties.
+    *From cocoapods repository by including following pod into app's Podfile:
+        pod 'QueueITSDK', '~> 1.0.7'
+
+
 ##Usage:
     
     func setupAndRunQueueIT {
