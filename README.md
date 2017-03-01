@@ -25,10 +25,13 @@ from Queue-IT server. As a user of SDK one can subscribe to be notified when:
         let configId = "exampleConfigId"
         let countDownWidget = WidgetRequest("CountDown", 1)
         let progressWidget = WidgetRequest("Progress", 1)
+        let dynamicMessageWidget = WidgetRequest("DynamicMessage", 1)
+        let queueNumberWidget = WidgetRequest("QueueNumber", 1)
+        let expectedServiceTimeWidget = WidgetRequest("ExpectedServiceTime", 1)
         let engine = QueueITEngine(customerId: customerId,
                                    eventId: eventId,
                                    configId: configId,
-                                   widgets: countDownWidget, progressWidget,
+                                   widgets: countDownWidget, progressWidget, dynamicMessageWidget, queueNumberWidget, expectedServiceTimeWidget
                                    layoutName: "",
                                    language: "",
                                    onQueueItemAssigned: (onQueueItemAssigned),
